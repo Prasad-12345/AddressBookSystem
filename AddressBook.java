@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class AddressBook {
+	//created an array list
 	ArrayList list1 = new ArrayList<Contacts>();
 	
 	//object creation
@@ -48,6 +49,7 @@ public class AddressBook {
 		list1.add(contact);
 	}
 	
+	//display method to display contact
 	public void display() {
 		Iterator<Contacts> iterator = list1.iterator();
 		while(iterator.hasNext()) {
