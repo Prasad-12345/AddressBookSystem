@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * Author: Prasad
- * Ability to edit existing contact personusing their name 
+ * Ability to edit existing contact person using their name 
  */
 
 public class AddressBookMain {
@@ -12,9 +12,12 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book Program");
 		
+		//object
 		AddressBook addressBook = new AddressBook();
+		//calling addContact method
 		addressBook.addContact(addressBook.contact);
-		addressBook.display();
+		//calling display method
+		addressBook.display(); 
 		
 		System.out.println("Do you want to edit contacts");
 		System.out.println("Enter yes to edit");
@@ -22,6 +25,7 @@ public class AddressBookMain {
 		String input = sc.next();
 		
 		if(input.equals("yes") || input.equals("Yes")) {
+			//calling edit contact method
 			addressBook.editContact();
 			addressBook.display();
 		}
