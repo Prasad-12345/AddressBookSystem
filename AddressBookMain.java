@@ -11,8 +11,11 @@ public class AddressBookMain {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book Program");
 		
+		//object
 		AddressBook addressBook = new AddressBook();
+		//calling add contact method
 		addressBook.addContact(addressBook.contact);
+		//calling display method
 		addressBook.display();
 		
 		System.out.println("Do you want to edit contacts");
@@ -21,6 +24,7 @@ public class AddressBookMain {
 		String input = sc.next();
 		
 		if(input.equals("yes") || input.equals("Yes")) {
+			//calling edit contact method
 			addressBook.editContact();
 			addressBook.display();
 		}
@@ -33,6 +37,7 @@ public class AddressBookMain {
 		input = sc.next();
 		
 		if(input.equals("yes") || input.equals("Yes")) {
+			//calling delete contact method
 			addressBook.deleteContact();
 			addressBook.display();
 		}
