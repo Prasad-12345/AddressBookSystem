@@ -4,16 +4,14 @@ import java.util.Scanner;
 
 /*
  * Author: Prasad
- * Ability to add multiple contacts to address book
+ * Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
  */
 public class AddressBookMain {
 
 	public static void main(String[] args) {
 		System.out.println("Welcome to Address Book Program");
-		
 		//object
-		AddressBook addressBook = new AddressBook();
-		//calling getMenu method
-		addressBook.getMenu();		
+		AddressBookOperation addressBookOperation = new AddressBookOperation();
+		addressBookOperation.operations();	
 	}
 }
