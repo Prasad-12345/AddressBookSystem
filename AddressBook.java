@@ -1,11 +1,15 @@
 package com.bridgelabz.addressbook;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 /*
  * Author: Prasad
- * Ability to add multiple contacts to address book
+ * Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
  */
 public class AddressBook {
 	//creating an array list
@@ -14,35 +18,51 @@ public class AddressBook {
 	//object 
 	Contacts contact = new Contacts(null, null, null, 0, null, null, 0, null);
 	Scanner sc = new Scanner(System.in);
+	boolean isPresent = false;
 	
 	//input contact details and adding it to the array list
-	public void addContact(Contacts contact) {
+	public void addContact(Contacts contacts) {
 		System.out.println("Enter first name :");
 		String firstName = sc.next();
+	//	boolean isFound = list1.stream().anyMatch(firstName1 -> firstName.equals(contacts.getFirstName()));
+		List<String> name = list1.stream().map(Contacts::getFirstName).collect(Collectors.toList());
+		for(int i = 0; i < name.size(); i++) {
+			if(name.get(i).equals(firstName)) {
+				isPresent = true;
+				break;
+			}
+		}
 		
-		System.out.println("Enter last name :");
-		String lastName = sc.next();
+		if(isPresent) {
+			System.out.println("First name already exists please enter unique name");
+		}
 		
-		System.out.println("Enter email :");
-		String email = sc.next();
+		else  {
+			System.out.println("Enter last name :");
+			String lastName = sc.next();
 		
-		System.out.println("Enter phone number :");
-		long phoneNumber = sc.nextLong();
+			System.out.println("Enter email :");
+			String email = sc.next();
 		
-		System.out.println("Enter city :");
-		String city = sc.next();
+			System.out.println("Enter phone number :");
+			long phoneNumber = sc.nextLong();
 		
- 		System.out.println("Enter state :");
-		String state = sc.next();
+			System.out.println("Enter city :");
+			String city = sc.next();
 		
-		System.out.println("Enter zip code :");
-		long zipCode = sc.nextLong();
+			System.out.println("Enter state :");
+			String state = sc.next();
+			
+			System.out.println("Enter zip code :");
+			long zipCode = sc.nextLong();
 		
-		System.out.println("Enter address :");
-		String address = sc.next();
+			System.out.println("Enter address :");
+			String address = sc.next();
 		
-		list1.add(new Contacts(firstName, lastName, email, phoneNumber, city, state, zipCode, address));
-	}
+			list1.add(new Contacts(firstName, lastName, email, phoneNumber, city, state, zipCode, address));
+			System.out.println(list1);
+			}
+		}
 	
 	//editContact method to edit contact details
 	public void editContact() {
@@ -124,7 +144,7 @@ public class AddressBook {
 	}
 	
 	//taking input from user to perform a specific task
-	public void getMenu() {
+	public void getMenu(AddressBook addressBook) {
 		System.out.println("Menu of address book");
 		boolean check = false;
 		do{
@@ -153,3 +173,4 @@ public class AddressBook {
 		while(!check);
 	}
 }
+
