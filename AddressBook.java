@@ -12,7 +12,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /*
  * Author: Prasad
- * Ability to search Person in a City or State across the multiple AddressBook
+ * Ability to view Persons by City or State
  */
 public class AddressBook {
 	//creating hash map

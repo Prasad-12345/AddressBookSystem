@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 /*
  * Author: Prasad
- * Ability to search Person in a City or State across the multiple AddressBook
+ * Ability to view Persons by City or State
  */
 public class AddressBookOperation {
 	static Map<String, AddressBook> myHashMap = new HashMap<>();
@@ -106,5 +106,20 @@ public class AddressBookOperation {
 			contactList.stream().filter(contact -> contact.getFirstName().equals(personName)
 															&& contact.getState().equals(stateName)).forEach(contact -> System.out.println(contact));
 		}
+	}
+	
+	/*
+	 * Displaying person by city or state
+	 */
+	public void displayPeopleByRegion(HashMap<String, ArrayList<Contacts>> listToDisplay) {
+
+		System.out.println("Enter the name of the region :");
+		String regionName = sc.next();
+
+		listToDisplay.values().stream()
+				.map(region -> region.stream()
+						.filter(contact -> contact.getState().equals(regionName)
+								|| contact.getCity().equals(regionName)))
+				.forEach(contact -> contact.forEach(contactDetails -> System.out.println(contactDetails)));
 	}
 }

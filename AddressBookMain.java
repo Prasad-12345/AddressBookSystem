@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * Author: Prasad
- * Ability to search Person in a City or State across the multiple AddressBook
+ * Ability to view Persons by City or State
  */
 public class AddressBookMain {
 
@@ -25,7 +25,7 @@ public class AddressBookMain {
 		boolean check = true;
 		do {
 			System.out.println("Enter your choice");
-			System.out.println("1.Add Address Book\n2.Display Address Book\n3.Edit address book\n4.Delete address book\n5.Search person\n6.Exit");
+			System.out.println("1.Add Address Book\n2.Display Address Book\n3.Edit address book\n4.Delete address book\n5.Search person by region\n6.Display by region\n7.Exit");
 			int choice = sc.nextInt();
 			switch(choice) {
 				case 1:
@@ -54,6 +54,15 @@ public class AddressBookMain {
 						break;
 						
 				case 6: 
+					System.out.println("Enter \n1.Display By City\n2.Display By State");
+					int displayChoice = sc.nextInt();
+					if(displayChoice==1)
+						addressBookOperation.displayPeopleByRegion(AddressBook.city);
+					else 
+						addressBookOperation.displayPeopleByRegion(AddressBook.state);
+					break;
+						
+				case 7: 
 					check = false;
 					break;
 					}
