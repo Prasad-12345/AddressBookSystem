@@ -8,12 +8,12 @@ import java.util.Map;
 import java.util.Scanner;
 /*
  * Author: Prasad
- * Ability to ensure there is no Duplicate Entry of the same Person in a particular Address Book
+ * Ability to search Person in a City or State across the multiple AddressBook
  */
 public class AddressBookOperation {
 	static Map<String, AddressBook> myHashMap = new HashMap<>();
 	
-	//AddressBookOperation addressBookOperation = new AddressBookOperation();
+	AddressBook addressBook = new AddressBook();
 
     public static Map<String, AddressBook> getAddressBookMap() {
         return myHashMap;
@@ -23,38 +23,6 @@ public class AddressBookOperation {
         AddressBookOperation.myHashMap = myHashMap;
     }
 	Scanner sc = new Scanner(System.in);
-	
-	public void operations() {
-		//operations according to user choice
-		boolean check = true;
-		do {
-			System.out.println("Enter your choice");
-			System.out.println("1.Add Address Book\n2.Display Address Book\n3.Edit address book\n4.Delete address book\n5.Exit");
-			int choice = sc.nextInt();
-			switch(choice) {
-				case 1:
-					addAddressBook();
-					break;
-				
-				case 2:
-					displayAddressBook();
-					break;
-				
-				case 3:
-					editAddressBook();
-					break;
-				
-				case 4:
-					deleteAddressBook();
-					break;
-					
-				case 5: 
-					check = false;
-					break;
-				}
-			}
-			while(check);
-		}
 	
 	public void editAddressBook() {
 		System.out.println("Enter the name of address book you want to edit");
@@ -105,6 +73,38 @@ public class AddressBookOperation {
 		}
 		else {
 			System.out.println("Enter correct address book name");
+		}
+	}
+	
+	/*
+	 * Searching person by city name
+	 */
+	public void searchByCity() {
+		System.out.println("Enter the name of city where the person resides");
+		String cityName = sc.next();
+		System.out.println("Enter the name of person");
+		String personName = sc.next();
+		
+		for(AddressBook addressBook : myHashMap.values()) {
+			ArrayList<Contacts> contactList = addressBook.getContact();
+			contactList.stream().filter(contact -> contact.getFirstName().equals(personName)
+															&& contact.getCity().equals(cityName)).forEach(contact -> System.out.println(contact));
+		}
+	}
+	
+	/*
+	 * Searching person by state name
+	 */
+	public void searchByState() {
+		System.out.println("Enter the name of state where the person resides");
+		String stateName = sc.next();
+		System.out.println("Enter the name of person");
+		String personName = sc.next();
+		
+		for(AddressBook addressBook : myHashMap.values()) {
+			ArrayList<Contacts> contactList = addressBook.getContact();
+			contactList.stream().filter(contact -> contact.getFirstName().equals(personName)
+															&& contact.getState().equals(stateName)).forEach(contact -> System.out.println(contact));
 		}
 	}
 }
