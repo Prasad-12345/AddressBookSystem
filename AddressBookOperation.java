@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 /*
  * Author: Prasad
- * Ability to view Persons by City or State
+ * Ability to get number of contact persons i.e. count by City or State
  */
 public class AddressBookOperation {
 	static Map<String, AddressBook> myHashMap = new HashMap<>();
@@ -121,5 +121,20 @@ public class AddressBookOperation {
 						.filter(contact -> contact.getState().equals(regionName)
 								|| contact.getCity().equals(regionName)))
 				.forEach(contact -> contact.forEach(contactDetails -> System.out.println(contactDetails)));
+	}
+	
+	/*
+	 * Method to count person in city or state
+	 */
+	public void countByRegion(HashMap<String, ArrayList<Contacts>> listToDisplay) {
+		System.out.println("Enter the name of the region :");
+		String regionName = sc.next();
+
+		long countPeople = listToDisplay.values().stream()
+				.map(region -> region.stream().filter(contact -> contact.getState().equals(regionName)
+						|| contact.getCity().equals(regionName)))
+				.count();
+
+		System.out.println("Number of People residing in " + regionName + " are: " + countPeople);
 	}
 }

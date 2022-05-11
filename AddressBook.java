@@ -12,7 +12,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /*
  * Author: Prasad
- * Ability to view Persons by City or State
+ * Ability to get number of contact persons i.e. count by City or State
  */
 public class AddressBook {
 	//creating hash map

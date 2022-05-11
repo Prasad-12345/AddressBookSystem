@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * Author: Prasad
- * Ability to view Persons by City or State
+ * Ability to get number of contact persons i.e. count by City or State
  */
 public class AddressBookMain {
 
@@ -25,7 +25,7 @@ public class AddressBookMain {
 		boolean check = true;
 		do {
 			System.out.println("Enter your choice");
-			System.out.println("1.Add Address Book\n2.Display Address Book\n3.Edit address book\n4.Delete address book\n5.Search person by region\n6.Display by region\n7.Exit");
+			System.out.println("1.Add Address Book\n2.Display Address Book\n3.Edit address book\n4.Delete address book\n5.Search person by region\n6.Display by region\n7.count people by region\n8.Exit");
 			int choice = sc.nextInt();
 			switch(choice) {
 				case 1:
@@ -61,8 +61,17 @@ public class AddressBookMain {
 					else 
 						addressBookOperation.displayPeopleByRegion(AddressBook.state);
 					break;
+					
+				case 7:
+					System.out.println("Enter \n1.Display By City\n2.Display By State");
+					int countChoice = sc.nextInt();
+					if(countChoice==1)
+						addressBookOperation.countByRegion(AddressBook.city);
+					else 
+						addressBookOperation.countByRegion(AddressBook.state);
+					break;
 						
-				case 7: 
+				case 8: 
 					check = false;
 					break;
 					}
