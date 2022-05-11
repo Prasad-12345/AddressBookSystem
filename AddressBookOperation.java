@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 /*
  * Author: Prasad
- * Ability to sort the entries in the address book alphabetically by Person’s name
+ * Ability to sort the entries in the address book by City, State, or Zip
  */
 public class AddressBookOperation {
 	static Map<String, AddressBook> myHashMap = new HashMap<>();

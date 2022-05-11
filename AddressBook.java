@@ -12,7 +12,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /*
  * Author: Prasad
- * Ability to sort the entries in the address book alphabetically by Person’s name
+ * Ability to sort the entries in the address book by City, State, or Zip
  */
 public class AddressBook {
 	//creating hash map
@@ -244,8 +244,30 @@ public class AddressBook {
 	//sorting address book
 	public void sortAddressBook() {
 		List<Contacts> sortedContactList;
-		sortedContactList = contactList.values().stream().sorted((firstPerson, secondPerson) -> firstPerson.getFirstName().compareTo(secondPerson.getFirstName())).collect(Collectors.toList());
-		printSortedList(sortedContactList);
+		System.out.println("On which basis you want to sort address book");
+		System.out.println("1. First name\n2. City\n3. State\n4. Zip Code");
+		int sortingChoice = sc.nextInt();
+		switch(sortingChoice) {
+			case 1:
+				sortedContactList = contactList.values().stream().sorted((firstPerson, secondPerson) -> firstPerson.getFirstName().compareTo(secondPerson.getFirstName())).collect(Collectors.toList());
+				printSortedList(sortedContactList);
+				break;
+				
+			case 2:
+				sortedContactList = contactList.values().stream().sorted((firstPerson, secondPerson) -> firstPerson.getCity().compareTo(secondPerson.getCity())).collect(Collectors.toList());
+				printSortedList(sortedContactList);
+				break;
+				
+			case 3:
+				sortedContactList = contactList.values().stream().sorted((firstPerson, secondPerson) -> firstPerson.getState().compareTo(secondPerson.getState())).collect(Collectors.toList());
+				printSortedList(sortedContactList);
+				break;
+				
+			case 4:
+				sortedContactList = contactList.values().stream().sorted((firstPerson, secondPerson) -> String.valueOf(firstPerson.getZipCode()).compareTo(String.valueOf(secondPerson.getFirstName()))).collect(Collectors.toList());
+				printSortedList(sortedContactList);
+				break;
+		}
 	}
 }
 
