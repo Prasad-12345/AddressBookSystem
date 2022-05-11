@@ -12,7 +12,7 @@ public class Contacts {
 	private String address;
 	
 	//constructor
-	public Contacts(String firstName, String lastName, String email, long phoneNumber, String city, String state,
+	/*public Contacts(String firstName, String lastName, String email, long phoneNumber, String city, String state,
 			long zipCode, String address) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -22,7 +22,7 @@ public class Contacts {
 		this.state = state;
 		this.zipCode = zipCode;
 		this.address = address;
-	}
+	}*/
 	
 	//Getter and setter methods
 	public String getFirstName() {
