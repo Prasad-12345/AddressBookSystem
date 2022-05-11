@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /*
  * Author: Prasad
- * Ability to get number of contact persons i.e. count by City or State
+ * Ability to sort the entries in the address book alphabetically by Person’s name
  */
 public class AddressBookMain {
 

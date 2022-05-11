@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 /*
  * Author: Prasad
- * Ability to get number of contact persons i.e. count by City or State
+ * Ability to sort the entries in the address book alphabetically by Person’s name
  */
 public class AddressBookOperation {
 	static Map<String, AddressBook> myHashMap = new HashMap<>();
@@ -24,6 +24,9 @@ public class AddressBookOperation {
     }
 	Scanner sc = new Scanner(System.in);
 	
+	/*
+	 * Method to edit address book
+	 */
 	public void editAddressBook() {
 		System.out.println("Enter the name of address book you want to edit");
 		String editAddressBookName = sc.next();

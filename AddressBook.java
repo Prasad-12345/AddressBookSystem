@@ -12,7 +12,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /*
  * Author: Prasad
- * Ability to get number of contact persons i.e. count by City or State
+ * Ability to sort the entries in the address book alphabetically by Person’s name
  */
 public class AddressBook {
 	//creating hash map
@@ -21,7 +21,6 @@ public class AddressBook {
 	public static HashMap<String, ArrayList<Contacts>> state = new HashMap<String, ArrayList<Contacts>>();
 	
 	//object 
-	
 	Scanner sc = new Scanner(System.in);
 	boolean isPresent = false;
 	
@@ -180,7 +179,7 @@ public class AddressBook {
 		System.out.println("Menu of address book");
 		boolean check = false;
 		do{
-			System.out.println("Enter your choice\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display\n5.Exit");
+			System.out.println("Enter your choice\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display\n5.Sort address book\n6.Exit");
 			int option = sc.nextInt();
 			switch(option){
 				case 1 : addContact();
@@ -195,7 +194,10 @@ public class AddressBook {
 				case 4: display();
 					break;
 					
-				case 5 : check = true;
+				case 5: sortAddressBook();
+					break;
+					
+				case 6 : check = true;
 					break;
 				
 				default :
@@ -227,6 +229,23 @@ public class AddressBook {
 			cityList.add(contact);
 			city.put(contact.getCity(), cityList);
 		}
+	}
+	
+	//printing sorted address book
+	public void printSortedList(List<Contacts> sortedContactList) {
+		System.out.println("Sorted address book: " +this.getAddressBookName());
+		Iterator iterator = sortedContactList.iterator();
+		while(iterator.hasNext()) {
+			System.out.println(iterator.next());
+			System.out.println();
+		}
+	}
+	
+	//sorting address book
+	public void sortAddressBook() {
+		List<Contacts> sortedContactList;
+		sortedContactList = contactList.values().stream().sorted((firstPerson, secondPerson) -> firstPerson.getFirstName().compareTo(secondPerson.getFirstName())).collect(Collectors.toList());
+		printSortedList(sortedContactList);
 	}
 }
 
