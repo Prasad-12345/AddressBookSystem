@@ -1,5 +1,11 @@
 package com.bridgelabz.addressbook;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,7 +18,7 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 /*
  * Author: Prasad
- * Ability to sort the entries in the address book by City, State, or Zip
+ *  Ability to Read or Write the Address Book with Persons Contact into a File using File IO
  */
 public class AddressBook {
 	//creating hash map
@@ -169,17 +175,17 @@ public class AddressBook {
 	public void display() {
 		System.out.println("Contents of address book: " + this.getAddressBookName());
 		for(String eachContact : contactList.keySet()) {
-			Contacts contacts = contactList.get(eachContact);
-			System.out.println(contacts);
+			Contacts person = contactList.get(eachContact);
+			System.out.println(person);
 		}
 	}
 	
 	//taking input from user to perform a specific task
-	public void getMenu(AddressBook addressBook) {
+	public void getMenu(AddressBook addressBook) throws IOException {
 		System.out.println("Menu of address book");
 		boolean check = false;
 		do{
-			System.out.println("Enter your choice\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display\n5.Sort address book\n6.Exit");
+			System.out.println("Enter your choice\n1.Add Contact\n2.Edit Contact\n3.Delete Contact\n4.Display\n5.Sort address book\n6.To write data into file\n7.read data from file\n8.Exit");
 			int option = sc.nextInt();
 			switch(option){
 				case 1 : addContact();
@@ -191,13 +197,18 @@ public class AddressBook {
 				case 3 : deleteContact();
 					break;
 				
-				case 4: display();
+				case 4 : display();
 					break;
 					
-				case 5: sortAddressBook();
+				case 5 : sortAddressBook();
 					break;
 					
-				case 6 : check = true;
+				case 6 : writeDataToFile();
+					break;
+					
+				case 7 : readDataFromFile();
+					break;
+				case 8 : check = true;
 					break;
 				
 				default :
@@ -268,6 +279,53 @@ public class AddressBook {
 				printSortedList(sortedContactList);
 				break;
 		}
+	}
+	
+	/*
+	 * Method to write address book data into file
+	 */
+	public void writeDataToFile() {
+		System.out.println("Enter addredd book name");
+		
+		String bookName = this.getAddressBookName();
+		
+		String fileName = bookName+".txt";
+		
+		StringBuffer addressBookBuffer = new StringBuffer();
+		contactList.values().stream().forEach(person -> {
+								String personData = person.toString().concat("\n");
+								addressBookBuffer.append(personData);
+		});
+		
+		try {
+			Files.write(Paths.get(fileName), addressBookBuffer.toString().getBytes());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	 * Method to read data from file
+	 */
+	public List<String> readDataFromFile() {
+		List<String> addressBookList = new ArrayList<String>();
+		String bookName = this.getAddressBookName();
+		System.out.println(bookName);
+		String fileName = bookName+".txt";
+		System.out.println("Reading from file "+fileName+"\n");
+		
+		try {
+			Files.lines(new File(fileName).toPath()).map(line -> line.trim()).forEach(personDetails ->{
+				System.out.println(personDetails);
+				addressBookList.add(personDetails);
+			});
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(addressBookList);
+		return addressBookList;
 	}
 }
 

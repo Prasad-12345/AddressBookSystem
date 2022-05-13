@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -8,12 +9,12 @@ import java.util.Map;
 import java.util.Scanner;
 /*
  * Author: Prasad
- * Ability to sort the entries in the address book by City, State, or Zip
+ * Ability to Read or Write the Address Book with Persons Contact into a File using File IO
  */
 public class AddressBookOperation {
 	static Map<String, AddressBook> myHashMap = new HashMap<>();
 	
-	AddressBook addressBook = new AddressBook();
+//	AddressBook addressBook = new AddressBook();
 
     public static Map<String, AddressBook> getAddressBookMap() {
         return myHashMap;
@@ -27,7 +28,7 @@ public class AddressBookOperation {
 	/*
 	 * Method to edit address book
 	 */
-	public void editAddressBook() {
+	public void editAddressBook() throws IOException {
 		System.out.println("Enter the name of address book you want to edit");
 		String editAddressBookName = sc.next();
 		if(myHashMap.containsKey(editAddressBookName)) {
@@ -49,6 +50,7 @@ public class AddressBookOperation {
 	    }
 	    else {
 	    	AddressBook addressBook = new AddressBook();
+	    	 addressBook.setAddressBookName(addressBookName);
 	    	myHashMap.put(addressBookName, addressBook);
 	    }
 	//	addressBook.getMenu();

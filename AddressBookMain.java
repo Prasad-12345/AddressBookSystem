@@ -1,14 +1,15 @@
 package com.bridgelabz.addressbook;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /*
  * Author: Prasad
- * Ability to sort the entries in the address book by City, State, or Zip
+ * Ability to Read or Write the Address Book with Persons Contact into a File using File IO
  */
 public class AddressBookMain {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.out.println("Welcome to Address Book Program");
 		//object
 		AddressBookMain addressBookMain = new AddressBookMain();
@@ -18,7 +19,7 @@ public class AddressBookMain {
 	/*
 	 * This method contains all address book operation    
 	 */
-	public void operations() {
+	public void operations() throws IOException {
 		AddressBookOperation addressBookOperation = new AddressBookOperation();
 		Scanner sc = new Scanner(System.in);
 		//operations according to user choice
